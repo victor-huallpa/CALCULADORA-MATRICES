@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Paleta como variables CSS (canales "R G B" separados por espacios, sin
+ * comas, para que Tailwind pueda componer opacidad con rgb(var(...) / a)).
+ * :root = modo claro. .dark = modo oscuro (activado con una clase en <html>).
+ */
+:root {
+  --color-paper: 250 249 244;
+  --color-paper-line: 220 224 214;
+  --color-ink: 28 35 51;
+  --color-ink-soft: 74 82 102;
+
+  --color-accent: 15 110 102;
+  --color-accent-light: 228 242 239;
+  --color-accent-dark: 10 79 73;
+
+  --color-pivot: 43 108 176;
+  --color-pivot-light: 227 238 249;
+  --color-pivot-dark: 29 78 130;
+
+  --color-warn: 179 38 30;
+  --color-warn-light: 251 234 233;
+
+  --color-panel: 255 255 255;
+}
+
+.dark {
+  --color-paper: 16 19 26;
+  --color-paper-line: 42 47 61;
+  --color-ink: 232 234 240;
+  --color-ink-soft: 158 165 181;
+
+  --color-accent: 53 181 166;
+  --color-accent-light: 18 51 48;
+  --color-accent-dark: 116 231 216;
+
+  --color-pivot: 108 165 230;
+  --color-pivot-light: 27 44 66;
+  --color-pivot-dark: 163 202 242;
+
+  --color-warn: 242 111 102;
+  --color-warn-light: 58 30 29;
+
+  --color-panel: 26 30 40;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-paper text-ink font-body antialiased transition-colors duration-300;
+  }
+
+  ::selection {
+    @apply bg-accent/20;
+  }
+
+  *:focus-visible {
+    outline: 2px solid rgb(var(--color-pivot));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .bg-notebook {
+    background-color: rgb(var(--color-paper));
+    background-image:
+      linear-gradient(rgb(var(--color-paper-line) / 0.7) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--color-paper-line) / 0.7) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-position: -1px -1px;
+    transition: background-color 0.3s ease;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--color-paper-line));
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
