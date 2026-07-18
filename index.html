@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuaderno de Matrices — Calculadora paso a paso</title>
+    <meta name="description" content="Calculadora de matrices con resolución paso a paso, modo oscuro, diseño responsive e historial local tipo cuaderno técnico." />
+    <meta name="theme-color" content="#FAF9F4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#10131A" media="(prefers-color-scheme: dark)" />
+    <script>
+      // Se aplica el tema antes de pintar la página para evitar un parpadeo
+      // del tema incorrecto (flash of unstyled theme) al cargar.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('matrix-calculator:theme')
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          var isDark = stored ? stored === 'dark' : prefersDark
+          if (isDark) document.documentElement.classList.add('dark')
+        } catch (err) {
+          /* localStorage puede fallar en modo privado; se ignora y se usa el tema claro por defecto */
+        }
+      })()
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="/CALCULADORA-MATRICES/assets/index-pVQWtxGM.js"></script>
+    <link rel="stylesheet" crossorigin href="/CALCULADORA-MATRICES/assets/index-Cc7sJqi6.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
